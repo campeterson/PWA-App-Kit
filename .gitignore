@@ -1,0 +1,16 @@
+# Dependencies (React track apps)
+node_modules/
+
+# Build output (React track apps)
+dist/
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Local env files
+.env
+.env.local
