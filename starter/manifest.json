@@ -1,0 +1,17 @@
+{
+  "name": "My App",
+  "short_name": "MyApp",
+  "description": "A short description of what your app does.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#2563EB",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

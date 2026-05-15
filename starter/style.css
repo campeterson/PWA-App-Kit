@@ -1,0 +1,310 @@
+/* ============================================================
+   PWA App Kit — style.css
+   Swap the accent color in :root to brand this for your app.
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* === Design tokens ========================================= */
+:root {
+  --bg-primary:    #F8F9FA;
+  --bg-secondary:  #EDEEF0;
+  --bg-input:      #FFFFFF;
+  --text-primary:  #1A1A2E;
+  --text-secondary:#4A4A6A;
+  --accent:        #2563EB;   /* ← change this to your brand color */
+  --accent-dark:   #1D4ED8;
+  --accent-light:  #DBEAFE;
+  --border:        #D1D5DB;
+  --success:       #16A34A;
+  --warning:       #D97706;
+  --error:         #DC2626;
+  --shadow:        rgba(0, 0, 0, 0.06);
+  --radius:        8px;
+  --radius-sm:     6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary:    #0F172A;
+    --bg-secondary:  #1E293B;
+    --bg-input:      #1E293B;
+    --text-primary:  #F1F5F9;
+    --text-secondary:#94A3B8;
+    --border:        #334155;
+    --shadow:        rgba(0, 0, 0, 0.3);
+    --accent-light:  #1E3A5F;
+  }
+}
+
+/* === Base ================================================== */
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100dvh;
+}
+
+/* === Header ================================================ */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-primary);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 52px;
+}
+
+.app-header h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* === Tab bar =============================================== */
+.tab-bar {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-primary);
+  position: sticky;
+  top: 52px;
+  z-index: 99;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 12px 8px;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 44px;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+/* === Content area ========================================== */
+.app-content {
+  padding: 16px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Hide/show tab panels */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* === Cards ================================================= */
+.card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 3px var(--shadow);
+}
+
+.card-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+/* === Buttons =============================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 10px 20px;
+  transition: all 0.15s ease;
+  border: none;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+.btn-primary:hover { background: var(--accent-dark); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+.btn-secondary:hover { background: var(--accent-light); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  padding: 10px 12px;
+}
+.btn-ghost:hover { background: var(--bg-secondary); color: var(--text-primary); }
+
+.btn-danger {
+  background: transparent;
+  color: var(--error);
+  border: 2px solid var(--error);
+}
+.btn-danger:hover { background: #FEE2E2; }
+
+.btn-sm {
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  min-height: 36px;
+}
+
+/* Full-width bottom action — use in a .action-bar */
+.btn-block {
+  width: 100%;
+}
+
+/* === Sticky bottom action bar ============================== */
+.action-bar {
+  position: sticky;
+  bottom: 0;
+  padding: 12px 16px;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* === Form elements ========================================= */
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text-primary);
+  min-height: 44px;
+  transition: border-color 0.15s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+  border-color: var(--accent);
+}
+
+textarea { resize: vertical; min-height: 80px; }
+
+/* === List items ============================================ */
+.item-list {
+  list-style: none;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.item-row:last-child { border-bottom: none; }
+
+.item-label { font-weight: 600; }
+.item-meta  { font-size: 0.85rem; color: var(--text-secondary); margin-top: 2px; }
+.item-value { font-size: 1rem; font-weight: 600; color: var(--accent); white-space: nowrap; }
+
+/* === Toast notification ==================================== */
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 999;
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* === Empty state =========================================== */
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-secondary);
+}
+.empty-state p { margin-top: 8px; font-size: 0.95rem; }
+
+/* === Utility =============================================== */
+.text-secondary { color: var(--text-secondary); }
+.text-accent    { color: var(--accent); }
+.text-success   { color: var(--success); }
+.text-warning   { color: var(--warning); }
+.text-error     { color: var(--error); }
+.text-sm        { font-size: 0.875rem; }
+.text-mono      { font-family: 'Courier New', monospace; }
+.mt-sm  { margin-top: 8px; }
+.mt-md  { margin-top: 16px; }
+.mt-lg  { margin-top: 24px; }
+.mb-sm  { margin-bottom: 8px; }
+.mb-md  { margin-bottom: 16px; }
+.flex   { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-sm { gap: 8px; }
+.gap-md { gap: 16px; }

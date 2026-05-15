@@ -1,0 +1,17 @@
+{
+  "name": "Time Tracker",
+  "short_name": "TimeTracker",
+  "description": "Log time across projects, see per-project totals, export to JSON.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#2563EB",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

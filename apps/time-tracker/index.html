@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#2563EB">
+  <link rel="manifest" href="./manifest.json">
+  <title>Time Tracker</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <h1>Time Tracker</h1>
+    <div class="header-actions">
+      <button class="btn btn-ghost btn-sm" id="btn-export">Export</button>
+    </div>
+  </header>
+
+  <nav class="tab-bar">
+    <button class="tab-btn active" data-tab="tab-timer">Timer</button>
+    <button class="tab-btn" data-tab="tab-log">Log</button>
+    <button class="tab-btn" data-tab="tab-summary">Summary</button>
+  </nav>
+
+  <main class="app-content">
+
+    <!-- Timer tab -->
+    <div id="tab-timer" class="tab-panel active">
+      <div class="card">
+        <div class="form-group">
+          <label for="project-input">Project</label>
+          <input id="project-input" type="text" placeholder="What are you working on?" autocomplete="off">
+        </div>
+        <div class="flex gap-sm">
+          <button id="btn-start" class="btn btn-primary">Start</button>
+          <button id="btn-stop"  class="btn btn-secondary" disabled>Stop</button>
+        </div>
+      </div>
+
+      <div id="timer-display" class="card hidden">
+        <div class="text-secondary text-sm mb-sm" id="timer-project"></div>
+        <div id="timer-clock" style="font-size:2.5rem; font-weight:700; letter-spacing:-0.02em; color:var(--accent); font-family:'Courier New',monospace;">0:00:00</div>
+      </div>
+    </div>
+
+    <!-- Log tab -->
+    <div id="tab-log" class="tab-panel">
+      <div id="entry-list"></div>
+    </div>
+
+    <!-- Summary tab -->
+    <div id="tab-summary" class="tab-panel">
+      <div class="card">
+        <div class="card-title">Total by project</div>
+        <div id="summary-list"></div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="./app.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>
