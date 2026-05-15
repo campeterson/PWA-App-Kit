@@ -216,6 +216,22 @@ my-tracker/
 - Always implement JSON **export** and **import** so users can back up and transfer data manually
 - Include a "copy to clipboard" option where sharing generated text is useful
 
+**Persist transient UI state across page refreshes.** If the user can be "in the middle of something" — a running timer, a partially filled form, a selected mode — that state must survive a refresh. Write it to `localStorage` the moment it changes; restore it on boot before rendering. Use `localStorage` (not IndexedDB) for this because it's synchronous and available before any async DB is open.
+
+```javascript
+// Write whenever state changes
+store.set('myApp_activeSession', { project, start: Date.now() });
+
+// Restore on boot, before first render
+const saved = store.get('myApp_activeSession');
+if (saved) resumeSession(saved);
+
+// Clear when the session ends naturally
+store.remove('myApp_activeSession');
+```
+
+The rule of thumb: if losing state on a refresh would surprise or frustrate the user, that state belongs in `localStorage`.
+
 ### PWA setup
 
 Every app must be installable. Include in `index.html`:
