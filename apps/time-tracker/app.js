@@ -153,6 +153,26 @@ let timerInterval = null;
 let timerStart    = null;
 let activeProject = null;
 
+const TIMER_KEY = 'pwaAppKit_activeTimer';
+
+function saveTimerState() {
+  if (activeProject && timerStart) {
+    store.set(TIMER_KEY, { project: activeProject, start: timerStart });
+  } else {
+    store.remove(TIMER_KEY);
+  }
+}
+
+function resumeTimerUI() {
+  document.getElementById('btn-start').disabled = true;
+  document.getElementById('btn-stop').disabled  = false;
+  document.getElementById('project-input').value = activeProject;
+  document.getElementById('timer-project').textContent = activeProject;
+  document.getElementById('timer-display').classList.remove('hidden');
+  timerInterval = setInterval(updateTimerDisplay, 1000);
+  updateTimerDisplay();
+}
+
 async function main() {
   await initDB(DB_NAME, DB_VERSION, db => {
     if (!db.objectStoreNames.contains(STORE)) {
@@ -164,6 +184,14 @@ async function main() {
   initTabs();
   renderLog();
   renderSummary();
+
+  // Restore a timer that was running before the page refreshed
+  const saved = store.get(TIMER_KEY);
+  if (saved && saved.project && saved.start) {
+    activeProject = saved.project;
+    timerStart    = saved.start;
+    resumeTimerUI();
+  }
 
   document.getElementById('btn-start').addEventListener('click', startTimer);
   document.getElementById('btn-stop').addEventListener('click', stopTimer);
@@ -177,6 +205,7 @@ function startTimer() {
 
   activeProject = project;
   timerStart    = Date.now();
+  saveTimerState();
   timerInterval = setInterval(updateTimerDisplay, 1000);
 
   document.getElementById('btn-start').disabled = true;
@@ -202,6 +231,8 @@ async function stopTimer() {
 
   await dbSave(STORE, entry);
   entries.push(entry);
+
+  store.remove(TIMER_KEY);
 
   document.getElementById('btn-start').disabled = false;
   document.getElementById('btn-stop').disabled  = true;

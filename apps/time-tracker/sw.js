@@ -1,6 +1,6 @@
 // Bump this version string whenever you change any cached file.
 // The old service worker won't re-fetch unless the name changes.
-const CACHE_NAME = 'time-tracker-v1';
+const CACHE_NAME = 'time-tracker-v2';
 
 const SHELL = [
   './',
