@@ -134,3 +134,17 @@ npx serve apps/time-tracker
 ```
 
 The time tracker logs work sessions per project, shows a per-project summary, and exports to JSON. Data lives in IndexedDB on your device.
+
+---
+
+## Getting help
+
+Happy to help with the trickier parts of getting your app into the world — custom domains and DNS, deployment pipelines, setting up JSON backup/restore, or anything else that comes up. Open a [GitHub issue](../../issues/new) for public questions, or email [campeterson@gmail.com](mailto:campeterson@gmail.com) for anything you'd rather keep private.
+
+---
+
+## Built with PWA App Kit
+
+Did you build something with this kit? [Open an issue](../../issues/new?title=Built+with+PWA+App+Kit%3A+%5Byour+app+name%5D&body=**App+name%3A**%0A%0A**What+it+does%3A**%0A%0A**Link+%28optional%29%3A**) and I'll add it to this list.
+
+<!-- Built-with entries go here -->
