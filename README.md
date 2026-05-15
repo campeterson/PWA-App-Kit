@@ -126,6 +126,12 @@ Service workers require HTTPS — all four platforms include it. For local testi
 
 ---
 
+## License
+
+[MIT](LICENSE) — Copyright (c) 2026 Cameron Peterson & Parachute River LLC
+
+---
+
 ## Running the sample app locally
 
 ```bash
