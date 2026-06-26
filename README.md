@@ -145,7 +145,9 @@ The time tracker logs work sessions per project, shows a per-project summary, an
 
 ## Getting help
 
-Happy to help with the trickier parts of getting your app into the world — custom domains and DNS, deployment pipelines, setting up JSON backup/restore, or anything else that comes up. Open a [GitHub issue](../../issues/new) for public questions, or email [parachuteriver@gmail.com](mailto:campeterson@gmail.com) for anything you'd rather keep private.
+Happy to help with the trickier parts of getting your app into the world — custom domains and DNS, deployment pipelines, setting up JSON backup/restore, or anything else that comes up. Open a [GitHub issue](../../issues/new) for public questions.
+
+If you'd rather not figure it out alone, I'm happy to actually sit down with you in person, hop on a call and either walk you through the process live, or even build a working prototype of your app together. No charge. Just email me at [parachuteriver@gmail.com](mailto:campeterson@gmail.com).
 
 ---
 
