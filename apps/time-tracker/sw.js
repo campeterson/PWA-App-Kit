@@ -1,6 +1,6 @@
 // Bump this version string whenever you change any cached file.
 // The old service worker won't re-fetch unless the name changes.
-const CACHE_NAME = 'time-tracker-v2';
+const CACHE_NAME = 'time-tracker-v3';
 
 const SHELL = [
   './',
@@ -30,6 +30,13 @@ self.addEventListener('activate', e => {
   );
 });
 
+// Clone synchronously, before the response is handed to the page. Cloning inside
+// the caches.open() callback fails once the page has started reading the body.
+function cacheCopy(request, res) {
+  const copy = res.clone();
+  caches.open(CACHE_NAME).then(c => c.put(request, copy)).catch(() => {});
+}
+
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
 
@@ -38,7 +45,7 @@ self.addEventListener('fetch', e => {
     e.respondWith(
       caches.match(e.request).then(cached => {
         const fetched = fetch(e.request).then(res => {
-          caches.open(CACHE_NAME).then(c => c.put(e.request, res.clone()));
+          cacheCopy(e.request, res);
           return res;
         }).catch(() => cached);
         return cached || fetched;
